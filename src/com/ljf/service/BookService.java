@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ljf.dao.BookDao;
@@ -20,7 +19,7 @@ public class BookService implements BookServiceImpl {
 	@Resource
 	private BookDao bookDao;
 	
-	private static final Logger log = Logger.getLogger(BookService.class);
+//	private static final Logger log = Logger.getLogger(BookService.class);
 	private static final long serialVersionUID = 1L;
 
 	@Override

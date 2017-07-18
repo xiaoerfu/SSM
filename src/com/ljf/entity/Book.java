@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 public class Book implements Serializable{
 
-    private String id;// 主键id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id;// 主键id
     private String isbn;// ISBN码
     private String path;// 图片
     private String title;// 标题

@@ -86,8 +86,9 @@
         </tr>
         <tr style="height: 254px">
             <td>
-                <div style="margin: 0px auto; width: 936px"><img
-                        style="display: block" src="${pageContext.request.contextPath}/images/body_03.jpg"></div>
+                <div style="margin: 0px auto; width: 750px">
+                <h2 style="display: block;text-align:right">管理员登录界面</h2>
+                <%-- <img style="display: block" src="${pageContext.request.contextPath}/images/body_03.jpg"> --%></div>
                 <div style="background-color: #278296">
                     <div style="margin: 0px auto; width: 936px">
                         <div
@@ -109,7 +110,7 @@
                                 </table>
                             </div>
                             <div style="height: 1px; clear: both"></div>
-                            <div style="width: 380px; float: right; clear: both">
+                            <div style="width: 350px; float: right; clear: both">
                                 <table border=0 cellSpacing=0 cellPadding=0 width=300>
                                     <tbody>
 

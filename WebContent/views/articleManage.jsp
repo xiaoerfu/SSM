@@ -17,11 +17,9 @@
             src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/ueditor/ueditor.config.js">
-
     </script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/ueditor/ueditor.all.min.js">
-
     </script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/js/common.js"></script>
@@ -118,7 +116,6 @@
             "articleTitle": $("#articleTitle").val(),
         });
     }
-
     function deleteArticle() {
         var selectedRows = $("#dg").datagrid('getSelections');
         if (selectedRows.length == 0) {
@@ -158,9 +155,7 @@
                                                 }, "json");
                             }
                         });
-
     }
-
     function openArticleAddDialog() {
         var html = '<div id="myEditor" name="articleContent"></div>';
         $('#editor').append(html);
@@ -170,7 +165,6 @@
         $("#dlg").dialog("open").dialog("setTitle", "添加文本信息");
         url = "${pageContext.request.contextPath}/article/save.do";
     }
-
     function saveArticle() {
         $("#fm").form("submit", {
             url: url,
@@ -185,7 +179,6 @@
             }
         });
     }
-
     function openArticleModifyDialog() {
         var selectedRows = $("#dg").datagrid('getSelections');
         if (selectedRows.length != 1) {
@@ -203,18 +196,15 @@
         url = "${pageContext.request.contextPath}/article/save.do?id="
                 + row.id;
     }
-
     function formatHref(val, row) {
         return "<a href='${pageContext.request.contextPath}/article.html?id=" + row.id + "' target='_blank'>查看详情</a>";
     }
-
     function resetValue() {
         $("#title").val("");
         $("#addName").val("");
         $("#container").val("");
         ResetEditor();
     }
-
     function closeArticleDialog() {
         $("#dlg").dialog("close");
         resetValue();

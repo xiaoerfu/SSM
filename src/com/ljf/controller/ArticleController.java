@@ -120,12 +120,13 @@ public class ArticleController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/findById")
+	@RequestMapping("/findArticleById")
 	public String findById(@RequestParam(value = "id")String id,HttpServletResponse response) throws Exception{
 		Article article = articleServiceImpl.findArticleById(id);
 		JSONObject jsonObject = JSONObject.fromObject(article);
 		ResponseUtil.write(response, jsonObject);
-		log.info("request:article/findById");
+		log.info("request:article/findArticleById");
+		System.out.println(jsonObject);
 		return null;
 	}
 }

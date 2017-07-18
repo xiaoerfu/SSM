@@ -2,6 +2,7 @@ package com.ljf.entity;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Picture implements Serializable{
 	
 	private String id;

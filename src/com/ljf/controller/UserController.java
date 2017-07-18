@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ public class UserController {
 	
 	@Resource
 	private UserServiceImpl userService;
+	private static final Logger log = Logger.getLogger(UserController.class);// 日志文件
 	
 	/**
 	 * 登录
@@ -66,7 +68,7 @@ public class UserController {
 	  @RequestMapping("/logout")
 	  public String logout(HttpSession session) throws Exception {
 	        session.invalidate();
-//	        log.info("request: user/logout");
+	        log.info("request: user/logout");
 	        return "redirect:/login.jsp";
 	    }
 	  
@@ -93,7 +95,7 @@ public class UserController {
 	        JSONArray jsonArray = JSONArray.fromObject(userList);
 	        result.put("rows", jsonArray);
 	        result.put("total", total);
-//	        log.info("request: user/list , map: " + map.toString());
+	        log.info("request: user/list , map: " + map.toString());
 	        ResponseUtil.write(response, result);
 	        return null;
 		  

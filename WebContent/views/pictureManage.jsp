@@ -29,12 +29,73 @@
 %>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/js/common.js"></script>
+<body style="margin:1px;" id="ff">
+<table id="dg" title="图片信息管理" class="easyui-datagrid" pagination="true"
+       rownumbers="true" fit="true" data-options="pageSize:10"
+       url="${pageContext.request.contextPath}/picture/list.do?type=<%=type %>&grade=<%=grade %>"
+       toolbar="#tb">
+    <thead data-options="frozen:true">
+    <tr>
+        <th field="cb" checkbox="true" align="center"></th>
+        <th field="id" width="150" align="center">编号</th>
+        <th field="path" width="300" align="center" formatter="formatProPic">缩略图</th>
+        <th field="time" width="150" align="center">创建时间</th>
+        <th field="url" width="150" align="center">图片链接</th>
+    </tr>
+    </thead>
+</table>
+<div id="tb">
+    <div>
+        <a href="javascript:openPictureAddDialog()" class="easyui-linkbutton"
+           iconCls="icon-add" plain="true">添加</a> <a
+            href="javascript:openPictureModifyDialog()"
+            class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> <a
+            href="javascript:deletePicture()" class="easyui-linkbutton"
+            iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;图片地址：&nbsp;<input type="text" id="id" size="20"
+                              onkeydown="if(event.keyCode==13) searchPicture()"/>&nbsp; <a
+            href="javascript:searchPicture()" class="easyui-linkbutton"
+            iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+<div id="dlg" class="easyui-dialog"
+     style="width: 600px;height:350px;padding: 10px 20px; position: relative; z-index:1000;"
+     closed="true" buttons="#dlg-buttons">
+    <form id="fm" method="post" enctype="multipart/form-data">
+        <div style="padding-top:50px;  float:left; width:95%; padding-left:30px;">
+            <div id="i_do_wrap">
+                <div id="pic11" style="display:none;" class="i_do_div rel">
+
+                </div>
+                <div class="i_do_div rel" id="picture"><p class="i_do_tle r_txt abs font14">展示图片</p>
+                </div>
+                <div class="i_do_div rel" id="i_no_sku_stock_wrap"><p class="i_do_tle r_txt abs font14">图片链接</p>
+                    <input type="text" id="desc" name="url" value="" style="border:1px #9c9c9c solid;height:25px;"/>
+                    <input type="hidden" name="type" value="<%=type%>"/>
+                    <input type="hidden" name="grade" value="<%=grade%>"/>
+                    <input type="hidden" name="time" id="time"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:savePicture()" class="easyui-linkbutton"
+       iconCls="icon-ok">保存</a> <a href="javascript:closePictureDialog()"
+                                   class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+
+
+</body>
 <script type="text/javascript">
     var url;
 
     function searchPicture() {
         $("#dg").datagrid('load', {
-            "url": $("#url").val(),
+            "id": $("#id").val(),
         });
     }
 
@@ -137,7 +198,7 @@
     function initUploadify() {
         $("#uploadify2").uploadify({
             'uploader': 'swf/uploadify2.swf', 			//flash文件的相对路径
-            'script': '../loadimg/upload.do',  				//后台处理程序的路径
+            'script': '../loading/upload.do',  				//后台处理程序的路径
             'fileDataName': 'file', 						//设置上传文件名称,默认为Filedata
             'cancelImg': 'images/cancel.png', 			//每一个文件上的关闭按钮图标
             'queueID': 'div_progress', 					//文件队列的ID，该ID与存放文件队列的div的ID一致
@@ -172,65 +233,5 @@
     }
 </script>
 </head>
-<body style="margin:1px;" id="ff">
-<table id="dg" title="图片信息管理" class="easyui-datagrid" pagination="true"
-       rownumbers="true" fit="true" data-options="pageSize:10"
-       url="${pageContext.request.contextPath}/picture/list.do?type=<%=type %>&grade=<%=grade %>"
-       toolbar="#tb">
-    <thead data-options="frozen:true">
-    <tr>
-        <th field="cb" checkbox="true" align="center"></th>
-        <th field="grade" width="100" align="center" hidden="true">编号</th>
-        <th field="path" width="300" align="center" formatter="formatProPic">缩略图</th>
-        <th field="time" width="150" align="center">创建时间</th>
-        <th field="url" width="150" align="center">图片链接</th>
-    </tr>
-    </thead>
-</table>
-<div id="tb">
-    <div>
-        <a href="javascript:openPictureAddDialog()" class="easyui-linkbutton"
-           iconCls="icon-add" plain="true">添加</a>
-        <a href="javascript:openPictureModifyDialog()"
-            class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
-        <a href="javascript:deletePicture()" class="easyui-linkbutton"
-            iconCls="icon-remove" plain="true">删除</a>
-    </div>
-    <div>
-        &nbsp;标题：&nbsp;<input type="text" id="url" size="20"
-                              onkeydown="if(event.keyCode==13) searchPicture()"/>&nbsp; <a
-            href="javascript:searchPicture()" class="easyui-linkbutton"
-            iconCls="icon-search" plain="true">搜索</a>
-    </div>
-</div>
-<div id="dlg" class="easyui-dialog"
-     style="width: 600px;height:350px;padding: 10px 20px; position: relative; z-index:1000;"
-     closed="true" buttons="#dlg-buttons">
-    <form id="fm" method="post" enctype="multipart/form-data">
-        <div style="padding-top:50px;  float:left; width:95%; padding-left:30px;">
-            <div id="i_do_wrap">
-                <div id="pic11" style="display:none;" class="i_do_div rel">
 
-                </div>
-                <div class="i_do_div rel" id="picture"><p class="i_do_tle r_txt abs font14">展示图片</p>
-                </div>
-                <div class="i_do_div rel" id="i_no_sku_stock_wrap"><p class="i_do_tle r_txt abs font14">图片链接</p>
-                    <input type="text" id="desc" name="url" value="" required="true" class="easyui-validatebox" style="border:1px #9c9c9c solid;height:25px;"/>
-                    <input type="hidden" name="type" value="<%=type%>"/>
-                    <input type="hidden" name="grade" value="<%=grade%>"/>
-                    <input type="hidden" name="time" id="time"/>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div id="dlg-buttons">
-    <a href="javascript:savePicture()" class="easyui-linkbutton"
-       iconCls="icon-ok">保存</a> <a href="javascript:closePictureDialog()"
-                                   class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
-</div>
-
-
-</body>
 </html>

@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 public class Article implements Serializable{
 	
-    private String id;//主键
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id;//主键
     private String articleTitle;//文章标题
     private String articleCreateDate;//创建日期
     private String articleContent;//文章内容

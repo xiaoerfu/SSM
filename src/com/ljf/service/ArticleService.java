@@ -40,10 +40,7 @@ public class ArticleService implements ArticleServiceImpl {
 	@Override
 	public int updArticle(Article article) {
 		// TODO Auto-generated method stub
-		if (article.getArticleTitle() == null || article.getArticleContent() == null || getTotalArticles(null) > 90 || article.getArticleContent().length() > 50000) {
-            return 0;
-        }
-		return updArticle(article);
+		return articleDao.updArticle(article);
 	}
 
 	@Override

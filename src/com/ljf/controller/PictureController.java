@@ -55,18 +55,24 @@ public class PictureController {
 			map.put("type", picture.getType() + "");
 			map.put("grade", picture.getGrade() + "");
 		}
-		@SuppressWarnings("unused")
 		List<Picture> pictureList = pictureServiceImpl.findPicture(map);
 		Long total = pictureServiceImpl.getTotalPicture(map);
 		JSONObject result = new JSONObject();
-		JSONArray jsonArray = JSONArray.fromObject(result);
+		JSONArray jsonArray = JSONArray.fromObject(pictureList);
 		result.put("rows", jsonArray);
-		result.put(total, total);
+		result.put("total", total);
 		log.info("request: picture/list , map: " + map.toString());
 		ResponseUtil.write(response, result);
 		return null;
 	}
-	
+
+	/**
+	 * 
+	 * @param picture
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/save")
 	public String save(Picture picture, HttpServletResponse response)
 			throws Exception {
@@ -89,6 +95,13 @@ public class PictureController {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param ids
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/delete")
 	public String delete(@RequestParam(value = "ids") String ids,
 			HttpServletResponse response) throws Exception {
@@ -103,6 +116,13 @@ public class PictureController {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/findById")
 	public String findById(@RequestParam(value = "id") String id,
 			HttpServletResponse response) throws Exception {
