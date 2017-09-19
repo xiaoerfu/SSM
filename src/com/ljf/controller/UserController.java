@@ -96,6 +96,7 @@ public class UserController {
 	        result.put("rows", jsonArray);
 	        result.put("total", total);
 	        log.info("request: user/list , map: " + map.toString());
+	        System.out.println(map.toString());
 	        ResponseUtil.write(response, result);
 	        return null;
 		  

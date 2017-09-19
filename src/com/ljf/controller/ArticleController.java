@@ -63,6 +63,7 @@ public class ArticleController {
 		result.put("total", total);
 		ResponseUtil.write(response, result);
 		log.info("request: article/list , map: " + map.toString());
+		System.out.println(map.toString());
 		return null;
 	}
 	
@@ -114,19 +115,21 @@ public class ArticleController {
 	}
 	
 	/**
-	 * 根据ID查询
+	 * 根据id查找
+	 * 
 	 * @param id
 	 * @param response
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/findArticleById")
-	public String findById(@RequestParam(value = "id")String id,HttpServletResponse response) throws Exception{
+	@RequestMapping("/findById")
+	public String findById(@RequestParam(value = "id") String id,
+			HttpServletResponse response) throws Exception {
 		Article article = articleServiceImpl.findArticleById(id);
 		JSONObject jsonObject = JSONObject.fromObject(article);
 		ResponseUtil.write(response, jsonObject);
-		log.info("request:article/findArticleById");
-		System.out.println(jsonObject);
+		System.out.println(article.toString());
+		log.info("request: article/findById");
 		return null;
 	}
 }

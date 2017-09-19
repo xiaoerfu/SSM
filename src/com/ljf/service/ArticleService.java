@@ -52,7 +52,7 @@ public class ArticleService implements ArticleServiceImpl {
 	@Override
 	public Article findArticleById(String id) {
 		// TODO Auto-generated method stub
-		return articleDao.findArticleById(id);
+		return articleDao.findById(id);
 	}
 
 }

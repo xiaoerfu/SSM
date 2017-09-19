@@ -47,6 +47,6 @@ public interface ArticleDao {
 	 * @param id
 	 * @return
 	 */
-	public Article findArticleById(String id);
+	public Article findById(String id);
 
 }
