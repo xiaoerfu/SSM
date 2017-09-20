@@ -53,7 +53,7 @@
 		where id=#{id}
 	</delete>
 
-    <select id="findById" parameterType="String" resultMap="ArticleResult">
+    <select id="findArticleById" parameterType="String" resultMap="ArticleResult">
 		select id,article_title,article_create_date,article_content,add_name
 		from ssm_article where id=#{id}
 	</select>

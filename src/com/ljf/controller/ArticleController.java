@@ -122,7 +122,7 @@ public class ArticleController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/findById")
+	@RequestMapping("/findArticleById")
 	public String findById(@RequestParam(value = "id") String id,
 			HttpServletResponse response) throws Exception {
 		Article article = articleServiceImpl.findArticleById(id);
